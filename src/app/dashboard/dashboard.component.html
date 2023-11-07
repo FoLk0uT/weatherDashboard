@@ -1,0 +1,20 @@
+<div class="container">
+    <h2>Weather Dashboard</h2>
+    <input (keyup.enter)="getWeather()" [(ngModel)]="city" placeholder="Enter city" />
+    <button (click)="getWeather()" [disabled]="!city">Get Weather</button>
+  
+    <div *ngIf="weatherData">
+        <div *ngIf="weatherData.isDay" class="weatherWidgetRow">
+            <fa-icon class="fa-5x sun-icon" [icon]="sunIcon"></fa-icon>  
+        </div>   
+        <div *ngIf="!weatherData.isDay" class="weatherWidgetRow">
+            <fa-icon class="fa-5x moon-icon" [icon]="moonIcon"></fa-icon>  
+        </div>   
+      <p>Temperature: {{ tempInCelsius }}°C</p>
+      <p>Humidity: {{ weatherData.main.humidity }}%</p>
+      <p>Weather: {{ weatherData.weather[0].description }}</p>
+    </div>
+    <div *ngIf="foundError">
+        <p>City Not Found!!</p>
+    </div>
+  </div>
